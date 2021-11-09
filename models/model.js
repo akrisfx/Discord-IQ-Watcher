@@ -9,4 +9,10 @@ const newUser = new Schema ({
     indexInCount: { type: Number}
 });
 
-module.exports =  mongoose.model('User', newUser)
+const User = mongoose.model('User', newUser);
+console.log(User.find({}).select().populate())
+module.exports =  User
+
+
+// userTag: { type: String, required: true, unique: true },
+// userID: { type: String, required: true, unique: true },

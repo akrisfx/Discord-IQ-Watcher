@@ -5,12 +5,12 @@ const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] 
   }); 
 const prefix = config.prefix; // «Вытаскиваем» префикс
-const model = require('./models/model.js')
+const modelUser = require('./models/model.js')
 
 let arrUserCount = []
 
 
-var comms_list = [{ // ну список команд, все ясно
+let comms_list = [{ // ну список команд, все ясно
     name: prefix + "test",
     out: (msg, arg) => {
         msg.channel.send(`test! ${arg.slice(1)}`)
@@ -21,16 +21,23 @@ var comms_list = [{ // ну список команд, все ясно
     name: prefix + "start", // Команда начинающая процесс чего либо 
     out: (msg, arguments) => {
         arrUserCount.push(0)
-        const user = new model({
+        const user = new modelUser({
             userTag: msg.author.tag,
             userID: msg.author.id,
             indexInCount: arrUserCount.length - 1
         })
-        console.log(user)
-        console.log(arrUserCount)
+        try{
+            user.save()
+        } catch { error => {console.log(error)} }
+        // console.log(user)
+        // console.log(arrUserCount)
+        
+        
     },
     about: "Команда начинающая процесс чего либо"
 }];
+const kittens = modelUser.find().exec();
+console.log('-------------------------', kittens ,'-------------------------');
 
 
 
