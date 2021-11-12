@@ -6,11 +6,11 @@ const newUser = new Schema ({
     userID: { type: String, required: true },
     IQ: { type: Number, default: 95 },
     coef: { type: Number, default: 0 },
-    indexInCount: { type: Number}
+    startedTime: { type: Number },
+    typeOfActivity: { type: String }
 });
 
 const User = mongoose.model('User', newUser);
-console.log(User.find({}).select().populate())
 module.exports =  User
 
 
