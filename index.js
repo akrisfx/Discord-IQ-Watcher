@@ -27,8 +27,8 @@ client.on("ready", () => {
 
 client.on('messageCreate', (msg) => { 
     if (!msg.content.startsWith(prefix)) return;
-    const arguments = msg.content.replace('\n', ' ').split(' '); // разделяем сообщение на аргументы и убераем абзацы
-    arguments[0] = arguments[0].toLowerCase(); // если кто-то напишет капсом, чтобы тоже работало
+    let arguments = msg.content.replace('\n', ' ').split(' '); // разделяем сообщение на аргументы и убераем абзацы
+    arguments[0] = arguments[0].toLowerCase(); // если кто-то напишет капсом, чтобы тоже работало //                          нужно пофиксить чтобы весь массив в ловер кейс переводило
     console.log(`arguments: ${arguments}`)
     try {
         const commIndex = comms.commands.findIndex((comm) => comm.name === arguments[0]); // ищем в списке команд
